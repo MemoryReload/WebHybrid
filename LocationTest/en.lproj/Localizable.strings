@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  LocationTest
+
+  Created by Heping on 8/24/16.
+  Copyright © 2016 BONC. All rights reserved.
+*/
+
+//
+"QRCode Scanner" = "QRCode Scanner";
+//
+"Album" = "Album";
+//
+"WebTest" = "WebTest";
+//
+"Focus the QRCode image and wait for scanning to be finished." = "Focus the QRCode image and wait for scanning to be finished.";

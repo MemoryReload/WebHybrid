@@ -1,0 +1,576 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		630CD7C91D60C481001EE1E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 630CD7C81D60C481001EE1E7 /* main.m */; };
+		630CD7CC1D60C481001EE1E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 630CD7CB1D60C481001EE1E7 /* AppDelegate.m */; };
+		630CD7CF1D60C481001EE1E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 630CD7CE1D60C481001EE1E7 /* ViewController.m */; };
+		630CD7D21D60C481001EE1E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 630CD7D01D60C481001EE1E7 /* Main.storyboard */; };
+		630CD7D41D60C481001EE1E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 630CD7D31D60C481001EE1E7 /* Assets.xcassets */; };
+		630CD7D71D60C481001EE1E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 630CD7D51D60C481001EE1E7 /* LaunchScreen.storyboard */; };
+		630CD7E21D60C481001EE1E7 /* LocationTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 630CD7E11D60C481001EE1E7 /* LocationTestTests.m */; };
+		630CD7ED1D60C481001EE1E7 /* LocationTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 630CD7EC1D60C481001EE1E7 /* LocationTestUITests.m */; };
+		630CD7FC1D60C481001EE1E7 /* BCWebViewURLInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 630CD7FB1D60C481001EE1E7 /* BCWebViewURLInterceptor.m */; };
+		634E94591D61729600FBB701 /* locationSpeed in Resources */ = {isa = PBXBuildFile; fileRef = 634E94581D61729600FBB701 /* locationSpeed */; };
+		636F8E421D6D5D02001B94BB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 636F8E411D6D5D02001B94BB /* Info.plist */; };
+		636F8E491D6D5F42001B94BB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 636F8E4B1D6D5F42001B94BB /* Localizable.strings */; };
+		639332181D66A355007CD2E6 /* focus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 639332111D66A355007CD2E6 /* focus@3x.png */; };
+		639332191D66A355007CD2E6 /* qrcode_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 639332121D66A355007CD2E6 /* qrcode_back@2x.png */; };
+		6393321B1D66A355007CD2E6 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 639332151D66A355007CD2E6 /* QRCodeViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		630CD7DE1D60C481001EE1E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 630CD7BC1D60C480001EE1E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 630CD7C31D60C481001EE1E7;
+			remoteInfo = LocationTest;
+		};
+		630CD7E91D60C481001EE1E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 630CD7BC1D60C480001EE1E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 630CD7C31D60C481001EE1E7;
+			remoteInfo = LocationTest;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		630CD7C41D60C481001EE1E7 /* WebHybrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebHybrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		630CD7C81D60C481001EE1E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		630CD7CA1D60C481001EE1E7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		630CD7CB1D60C481001EE1E7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		630CD7CD1D60C481001EE1E7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		630CD7CE1D60C481001EE1E7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		630CD7D11D60C481001EE1E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		630CD7D31D60C481001EE1E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		630CD7D61D60C481001EE1E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		630CD7DD1D60C481001EE1E7 /* WebHybrid.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebHybrid.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		630CD7E11D60C481001EE1E7 /* LocationTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationTestTests.m; sourceTree = "<group>"; };
+		630CD7E31D60C481001EE1E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		630CD7E81D60C481001EE1E7 /* WebHybrid.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebHybrid.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		630CD7EC1D60C481001EE1E7 /* LocationTestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationTestUITests.m; sourceTree = "<group>"; };
+		630CD7EE1D60C481001EE1E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		630CD7FA1D60C481001EE1E7 /* BCWebViewURLInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCWebViewURLInterceptor.h; sourceTree = "<group>"; };
+		630CD7FB1D60C481001EE1E7 /* BCWebViewURLInterceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCWebViewURLInterceptor.m; sourceTree = "<group>"; };
+		634E94581D61729600FBB701 /* locationSpeed */ = {isa = PBXFileReference; lastKnownFileType = folder; name = locationSpeed; path = LocationTest/locationSpeed; sourceTree = "<group>"; };
+		636F8E411D6D5D02001B94BB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		636F8E4A1D6D5F42001B94BB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		636F8E4C1D6D5F46001B94BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		639332111D66A355007CD2E6 /* focus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "focus@3x.png"; sourceTree = "<group>"; };
+		639332121D66A355007CD2E6 /* qrcode_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_back@2x.png"; sourceTree = "<group>"; };
+		639332141D66A355007CD2E6 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
+		639332151D66A355007CD2E6 /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		630CD7C11D60C481001EE1E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		630CD7DA1D60C481001EE1E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		630CD7E51D60C481001EE1E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		630CD7BB1D60C480001EE1E7 = {
+			isa = PBXGroup;
+			children = (
+				634E94581D61729600FBB701 /* locationSpeed */,
+				630CD7C61D60C481001EE1E7 /* LocationTest */,
+				630CD7E01D60C481001EE1E7 /* LocationTestTests */,
+				630CD7EB1D60C481001EE1E7 /* LocationTestUITests */,
+				630CD7C51D60C481001EE1E7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		630CD7C51D60C481001EE1E7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				630CD7C41D60C481001EE1E7 /* WebHybrid.app */,
+				630CD7DD1D60C481001EE1E7 /* WebHybrid.xctest */,
+				630CD7E81D60C481001EE1E7 /* WebHybrid.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		630CD7C61D60C481001EE1E7 /* LocationTest */ = {
+			isa = PBXGroup;
+			children = (
+				636F8E411D6D5D02001B94BB /* Info.plist */,
+				630CD7CA1D60C481001EE1E7 /* AppDelegate.h */,
+				630CD7CB1D60C481001EE1E7 /* AppDelegate.m */,
+				630CD7CD1D60C481001EE1E7 /* ViewController.h */,
+				630CD7CE1D60C481001EE1E7 /* ViewController.m */,
+				630CD7FA1D60C481001EE1E7 /* BCWebViewURLInterceptor.h */,
+				630CD7FB1D60C481001EE1E7 /* BCWebViewURLInterceptor.m */,
+				6393320D1D66A355007CD2E6 /* QRCodeScanner */,
+				630CD7D01D60C481001EE1E7 /* Main.storyboard */,
+				630CD7D31D60C481001EE1E7 /* Assets.xcassets */,
+				630CD7D51D60C481001EE1E7 /* LaunchScreen.storyboard */,
+				630CD7C71D60C481001EE1E7 /* Supporting Files */,
+			);
+			path = LocationTest;
+			sourceTree = "<group>";
+		};
+		630CD7C71D60C481001EE1E7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				630CD7C81D60C481001EE1E7 /* main.m */,
+				636F8E4B1D6D5F42001B94BB /* Localizable.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		630CD7E01D60C481001EE1E7 /* LocationTestTests */ = {
+			isa = PBXGroup;
+			children = (
+				630CD7E11D60C481001EE1E7 /* LocationTestTests.m */,
+				630CD7E31D60C481001EE1E7 /* Info.plist */,
+			);
+			path = LocationTestTests;
+			sourceTree = "<group>";
+		};
+		630CD7EB1D60C481001EE1E7 /* LocationTestUITests */ = {
+			isa = PBXGroup;
+			children = (
+				630CD7EC1D60C481001EE1E7 /* LocationTestUITests.m */,
+				630CD7EE1D60C481001EE1E7 /* Info.plist */,
+			);
+			path = LocationTestUITests;
+			sourceTree = "<group>";
+		};
+		6393320D1D66A355007CD2E6 /* QRCodeScanner */ = {
+			isa = PBXGroup;
+			children = (
+				639332111D66A355007CD2E6 /* focus@3x.png */,
+				639332121D66A355007CD2E6 /* qrcode_back@2x.png */,
+				639332141D66A355007CD2E6 /* QRCodeViewController.h */,
+				639332151D66A355007CD2E6 /* QRCodeViewController.m */,
+			);
+			path = QRCodeScanner;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		630CD7C31D60C481001EE1E7 /* WebHybrid */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 630CD7F11D60C481001EE1E7 /* Build configuration list for PBXNativeTarget "WebHybrid" */;
+			buildPhases = (
+				630CD7C01D60C481001EE1E7 /* Sources */,
+				630CD7C11D60C481001EE1E7 /* Frameworks */,
+				630CD7C21D60C481001EE1E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WebHybrid;
+			productName = LocationTest;
+			productReference = 630CD7C41D60C481001EE1E7 /* WebHybrid.app */;
+			productType = "com.apple.product-type.application";
+		};
+		630CD7DC1D60C481001EE1E7 /* WebHybridTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 630CD7F41D60C481001EE1E7 /* Build configuration list for PBXNativeTarget "WebHybridTests" */;
+			buildPhases = (
+				630CD7D91D60C481001EE1E7 /* Sources */,
+				630CD7DA1D60C481001EE1E7 /* Frameworks */,
+				630CD7DB1D60C481001EE1E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				630CD7DF1D60C481001EE1E7 /* PBXTargetDependency */,
+			);
+			name = WebHybridTests;
+			productName = LocationTestTests;
+			productReference = 630CD7DD1D60C481001EE1E7 /* WebHybrid.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		630CD7E71D60C481001EE1E7 /* WebHybridUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 630CD7F71D60C481001EE1E7 /* Build configuration list for PBXNativeTarget "WebHybridUITests" */;
+			buildPhases = (
+				630CD7E41D60C481001EE1E7 /* Sources */,
+				630CD7E51D60C481001EE1E7 /* Frameworks */,
+				630CD7E61D60C481001EE1E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				630CD7EA1D60C481001EE1E7 /* PBXTargetDependency */,
+			);
+			name = WebHybridUITests;
+			productName = LocationTestUITests;
+			productReference = 630CD7E81D60C481001EE1E7 /* WebHybrid.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		630CD7BC1D60C480001EE1E7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = BONC;
+				TargetAttributes = {
+					630CD7C31D60C481001EE1E7 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = Z86DT6Z4G7;
+					};
+					630CD7DC1D60C481001EE1E7 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 630CD7C31D60C481001EE1E7;
+					};
+					630CD7E71D60C481001EE1E7 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 630CD7C31D60C481001EE1E7;
+					};
+				};
+			};
+			buildConfigurationList = 630CD7BF1D60C480001EE1E7 /* Build configuration list for PBXProject "WebHybrid" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				"zh-Hans",
+				en,
+			);
+			mainGroup = 630CD7BB1D60C480001EE1E7;
+			productRefGroup = 630CD7C51D60C481001EE1E7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				630CD7C31D60C481001EE1E7 /* WebHybrid */,
+				630CD7DC1D60C481001EE1E7 /* WebHybridTests */,
+				630CD7E71D60C481001EE1E7 /* WebHybridUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		630CD7C21D60C481001EE1E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				636F8E421D6D5D02001B94BB /* Info.plist in Resources */,
+				639332191D66A355007CD2E6 /* qrcode_back@2x.png in Resources */,
+				630CD7D71D60C481001EE1E7 /* LaunchScreen.storyboard in Resources */,
+				639332181D66A355007CD2E6 /* focus@3x.png in Resources */,
+				630CD7D41D60C481001EE1E7 /* Assets.xcassets in Resources */,
+				636F8E491D6D5F42001B94BB /* Localizable.strings in Resources */,
+				630CD7D21D60C481001EE1E7 /* Main.storyboard in Resources */,
+				634E94591D61729600FBB701 /* locationSpeed in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		630CD7DB1D60C481001EE1E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		630CD7E61D60C481001EE1E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		630CD7C01D60C481001EE1E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				630CD7FC1D60C481001EE1E7 /* BCWebViewURLInterceptor.m in Sources */,
+				6393321B1D66A355007CD2E6 /* QRCodeViewController.m in Sources */,
+				630CD7CF1D60C481001EE1E7 /* ViewController.m in Sources */,
+				630CD7CC1D60C481001EE1E7 /* AppDelegate.m in Sources */,
+				630CD7C91D60C481001EE1E7 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		630CD7D91D60C481001EE1E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				630CD7E21D60C481001EE1E7 /* LocationTestTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		630CD7E41D60C481001EE1E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				630CD7ED1D60C481001EE1E7 /* LocationTestUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		630CD7DF1D60C481001EE1E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 630CD7C31D60C481001EE1E7 /* WebHybrid */;
+			targetProxy = 630CD7DE1D60C481001EE1E7 /* PBXContainerItemProxy */;
+		};
+		630CD7EA1D60C481001EE1E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 630CD7C31D60C481001EE1E7 /* WebHybrid */;
+			targetProxy = 630CD7E91D60C481001EE1E7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		630CD7D01D60C481001EE1E7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				630CD7D11D60C481001EE1E7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		630CD7D51D60C481001EE1E7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				630CD7D61D60C481001EE1E7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		636F8E4B1D6D5F42001B94BB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				636F8E4A1D6D5F42001B94BB /* zh-Hans */,
+				636F8E4C1D6D5F46001B94BB /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		630CD7EF1D60C481001EE1E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		630CD7F01D60C481001EE1E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		630CD7F21D60C481001EE1E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/LocationTest/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bonc.LocationTest;
+				PRODUCT_NAME = WebHybrid;
+			};
+			name = Debug;
+		};
+		630CD7F31D60C481001EE1E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/LocationTest/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bonc.LocationTest;
+				PRODUCT_NAME = WebHybrid;
+			};
+			name = Release;
+		};
+		630CD7F51D60C481001EE1E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = LocationTestTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bonc.LocationTestTests;
+				PRODUCT_NAME = WebHybrid;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WebHybrid.app/WebHybrid";
+			};
+			name = Debug;
+		};
+		630CD7F61D60C481001EE1E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = LocationTestTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bonc.LocationTestTests;
+				PRODUCT_NAME = WebHybrid;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WebHybrid.app/WebHybrid";
+			};
+			name = Release;
+		};
+		630CD7F81D60C481001EE1E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = LocationTestUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bonc.LocationTestUITests;
+				PRODUCT_NAME = WebHybrid;
+				TEST_TARGET_NAME = LocationTest;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		630CD7F91D60C481001EE1E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = LocationTestUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bonc.LocationTestUITests;
+				PRODUCT_NAME = WebHybrid;
+				TEST_TARGET_NAME = LocationTest;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		630CD7BF1D60C480001EE1E7 /* Build configuration list for PBXProject "WebHybrid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				630CD7EF1D60C481001EE1E7 /* Debug */,
+				630CD7F01D60C481001EE1E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		630CD7F11D60C481001EE1E7 /* Build configuration list for PBXNativeTarget "WebHybrid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				630CD7F21D60C481001EE1E7 /* Debug */,
+				630CD7F31D60C481001EE1E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		630CD7F41D60C481001EE1E7 /* Build configuration list for PBXNativeTarget "WebHybridTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				630CD7F51D60C481001EE1E7 /* Debug */,
+				630CD7F61D60C481001EE1E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		630CD7F71D60C481001EE1E7 /* Build configuration list for PBXNativeTarget "WebHybridUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				630CD7F81D60C481001EE1E7 /* Debug */,
+				630CD7F91D60C481001EE1E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 630CD7BC1D60C480001EE1E7 /* Project object */;
+}
