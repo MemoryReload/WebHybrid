@@ -10,32 +10,18 @@
 <body>
 <div>
     <p id="output" style="width: 100% ;height: 100%;padding-top: 100px;text-align:center" ;></p>
-    <button onclick="window.locationManager.start()">start location</button>
-    <button onclick="window.locationManager.stop()">stop location</button>
-    <button onclick="window.qrcodeScanner.scan()">scanQRCode</button>
+    <button onclick="boncAppEngine.locationManager.start(
+    function (location) {
+       output.innerHTML='longitude:'+location.longitude+'</br> altitude:'+location['altitude']+'</br>speed:'+location.speed+'</br>timestamp:'+location['timestamp'];
+     },function (error){
+       output.innerHTML= 'locationError: '+error.description;
+     })">start location</button>
+    <button onclick="boncAppEngine.locationManager.stop()">stop location</button>
+    <button onclick="boncAppEngine.codeScanner.scan(
+    function (info){output.innerHTML= 'CodeScanInfo: '+info.codeInfo;},
+    null,
+    function (error){output.innerHTML= 'CodeScanError: '+error.description;})">scanCode</button>
 </div>
 </body>
-<script src="locationManager.js"></script>
-<script src="qrcodeScanner.js"></script>
-<script>
-    window.onload=function () {
-      	var output=document.getElementById("output");
-    	
-        window.locationManager.successHandler=function (location) {
-           output.innerHTML='longitude:'+location.longitude+'</br> altitude:'+location['altitude']+'</br>speed:'+location.speed+'</br>timestamp:'+location['timestamp'];
-        };
-        
-        window.locationManager.errorHandler=function (error){
-            output.innerHTML= 'locationError: '+error;
-        };
-    
-        window.qrcodeScanner.successHandler=function (info){
-        	  output.innerHTML= 'QRCodeInfo: '+info;
-        };
-        
-        window.qrcodeScanner.errorHandler=function (error){
-            output.innerHTML= 'QRCodeError: '+error;
-        };
-    };
-</script>
+<script src="BoncAppEngine.js"></script>
 </html>

@@ -17,12 +17,10 @@
 @property (nonatomic,weak) UIViewController* viewController;
 ///默认初始化，拦截“mobile-service”
 -(instancetype)init;
-///设置你需要的拦截的urlScheme
--(instancetype)initWithInterceptedURLScheme:(NSString*)scheme;
 ///能否拦截url
 -(BOOL)canHandleURL:(NSURL*)url;
 ///拦截处理。注意：handlerURL:将会调用performAction:command:withParams:进行具体的处理。
 -(void)handlerURL:(NSURL*)url;
 ///具体的拦截处理操作。用户可以重写这个函数，根据参数做出自己的个性化处理。
--(void)performAction:(NSString*)action command:(NSString*)command withParams:(NSArray*)params;
+-(void)performObject:(NSString*)object command:(NSString*)command withParam:(id)jsonObject;
 @end

@@ -7,10 +7,12 @@
 */
 
 //
-"QRCode Scanner" = "二维码扫描";
+"CodeScanner" = "二维码扫描";
 //
 "Album" = "相册";
 //
 "WebTest" = "测试网页";
 //
-"Focus the QRCode image and wait for scanning to be finished." = "请将扫描框对准二维码扫描";
+"Align QR code/barcode within frame to scan" = "请将扫描框对准二维码扫描";
+//
+"Back" = "返回";

@@ -8,9 +8,9 @@
 
 #import "BCWebViewURLInterceptor.h"
 #import <CoreLocation/CoreLocation.h>
-#import "QRCodeViewController.h"
+#import "BCCodeScannerController.h"
 
-@interface BCWebViewURLInterceptor()<CLLocationManagerDelegate,QRCodeViewControllerDelegate>
+@interface BCWebViewURLInterceptor()<CLLocationManagerDelegate,BCCodeScannerControllerDelegate>
 @property (nonatomic,retain) NSString* interceptedScheme;
 @property (nonatomic,strong) CLLocationManager* locationManager;
 @end
@@ -28,16 +28,6 @@
     return self;
 }
 
--(instancetype)initWithInterceptedURLScheme:(NSString*)scheme
-{
-    self=[super init];
-    if (self) {
-        self.interceptedScheme=scheme;
-    }
-    return self;
-}
-
-
 #pragma mark - URL Handling Method
 
 -(BOOL)canHandleURL:(NSURL*)url
@@ -53,14 +43,14 @@
     if (!([self canHandleURL:url]&&url.query)) {
         return ;
     }
-    NSString *action,*command;
-    NSArray* paramsList;
+    NSString *object,*command;
+    id param;
     NSArray* queryList=[url.query componentsSeparatedByString:@"&"];
     for (NSString* keyValuePairs in queryList) {
         NSArray* keyValueArray=[keyValuePairs componentsSeparatedByString:@"="];
         if (keyValueArray.count!=2) continue;
-        if ([[keyValueArray firstObject] isEqualToString:@"action"]) {
-            action=[keyValueArray lastObject];
+        if ([[keyValueArray firstObject] isEqualToString:@"object"]) {
+            object=[keyValueArray lastObject];
         }
         else if([[keyValueArray firstObject] isEqualToString:@"command"]){
             command=[keyValueArray lastObject];
@@ -68,24 +58,24 @@
         else if([[keyValueArray firstObject] isEqualToString:@"params"]){
             NSString* paramsStr=[keyValueArray lastObject];
             NSError* error;
-            NSArray *params= [NSJSONSerialization JSONObjectWithData:[paramsStr dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:&error];
+            id jsonObject= [NSJSONSerialization JSONObjectWithData:[paramsStr dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:&error];
             if (error) {
-                NSLog(@"params can not serialized with json formmat,Error:%@",error);
+                NSLog(@"JSONSerialization Error:%@",error);
             }
-            paramsList=params;
+            param=jsonObject;
         }
     };
     
-    if (action&&command) {
-        [self performAction:action command:command withParams:paramsList];
+    if (object&&command) {
+        [self performObject:object command:command withParam:param];
     }
 }
 
--(void)performAction:(NSString*)action command:(NSString*)command withParams:(NSArray*)params
+-(void)performObject:(NSString*)object command:(NSString*)command withParam:(id)jsonObject
 {
-    NSLog(@"action=%@,command:%@,params=%@",action,command,params);
+    NSLog(@"object=%@,command:%@,params=%@",object,command,jsonObject);
     //定位服务
-    if ([action isEqualToString:@"location"]) {
+    if ([object isEqualToString:@"locationManager"]) {
         //启动定位
         if ([command isEqualToString:@"start"]) {
             [self startLocationManager];
@@ -96,10 +86,30 @@
         }
     }
     //QR二维码扫描
-    else if ([action isEqualToString:@"scanQRCode"]){
+    else if ([object isEqualToString:@"codeScanner"]){
         if ([command isEqualToString:@"scan"]) {
-            [self scanQRCode];
+            [self scanCode];
         }
+    }
+}
+
+-(void)callbackObject:(NSString*)object withHandler:(NSString*)handler param:(id)param
+{
+    NSString* json;
+    if (param) {
+        NSError* error;
+        NSData* jsonData=[NSJSONSerialization dataWithJSONObject:param options:NSJSONWritingPrettyPrinted error:&error];
+        if (error) {
+            NSLog(@"JSONSerialization Error:%@",error);
+        }
+        json=[[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }else{
+        json=@"";
+    }
+    NSString* javaScriptStr=[NSString stringWithFormat:@"%@.%@(%@)",object,handler,json];
+    NSLog(@"javaScriptStr=%@",javaScriptStr);
+    if (self.webView) {
+        [self.webView stringByEvaluatingJavaScriptFromString:javaScriptStr];
     }
 }
 
@@ -126,18 +136,18 @@
     }
 }
 
-#pragma mark -  QRCode    Handling  Method
+#pragma mark -  ScanCode    Handling  Method
 
-- (void)scanQRCode
+- (void)scanCode
 {
     if (self.viewController) {
-        QRCodeViewController* scannerVC=[[QRCodeViewController alloc]init];
+        BCCodeScannerController* scannerVC=[[BCCodeScannerController alloc]init];
         scannerVC.delegate=self;
         if (self.viewController.navigationController) {
-            [self.viewController.navigationController pushViewController:scannerVC animated:YES];
+            [self.viewController.navigationController pushViewController:scannerVC animated:NO];
         }
         else{
-            [self.viewController presentViewController:scannerVC animated:YES completion:nil];
+            [self.viewController presentViewController:scannerVC animated:YES completion:NO];
         }
     }
 }
@@ -152,44 +162,33 @@
     fmt.dateStyle=kCFDateFormatterShortStyle;
     fmt.timeStyle=kCFDateFormatterLongStyle;
     NSString* dateStr=[fmt stringFromDate:date];
-    NSString* jsString=[NSString stringWithFormat:@"window.locationManager.successHandler({\"longitude\":\"%g\",\"latitude\":\"%g\",\"speed\":\"%g\",\"timestamp\":\"%@\"})",location.coordinate.longitude,location.coordinate.latitude,location.speed,dateStr];
-    if (self.webView) {
-        [self.webView stringByEvaluatingJavaScriptFromString:jsString];
-    }
+    NSDictionary* param=@{@"longitude":[NSNumber numberWithFloat:location.coordinate.longitude],@"latitude":[NSNumber numberWithFloat:location.coordinate.latitude],@"speed":[NSNumber numberWithFloat:location.speed],@"timestamp":dateStr};
+    [self callbackObject:@"window.boncAppEngine.locationManager" withHandler:@"successHandler" param:param];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
 {
-    NSString* jsString=[NSString stringWithFormat:@"window.locationManager.errorHandler(\"%@\")",error.description];
-    if (self.webView) {
-         [self.webView stringByEvaluatingJavaScriptFromString:jsString];
-    }
+    NSDictionary* param= @{@"description":error.description,@"code":[NSNumber numberWithInteger:error.code],@"domain":error.domain};
+    [self callbackObject:@"window.boncAppEngine.locationManager" withHandler:@"errorHandler" param:param];
 }
 
-#pragma mark - QRCodeViewControllerDelegate
+#pragma mark - BCCodeScannerControllerDelegate
 
--(void)viewController:(QRCodeViewController*)viewController  didFinishScanWithInformation:(NSString*)qrCodeInfo
+-(void)viewController:(BCCodeScannerController*)viewController  didFinishScanWithInformation:(NSString*)qrCodeInfo
 {
-    NSString *jsString=[NSString stringWithFormat:@"window.qrcodeScanner.successHandler(\"%@\")",qrCodeInfo];
-    if (self.webView) {
-        [self.webView stringByEvaluatingJavaScriptFromString:jsString];
-    }
+    NSDictionary* param=@{@"codeInfo":qrCodeInfo};
+    [self callbackObject:@"window.boncAppEngine.codeScanner" withHandler:@"successHandler" param:param];
 }
 
--(void)didCancleScanWithViewController:(QRCodeViewController*)viewController
+-(void)didCancleScanWithViewController:(BCCodeScannerController*)viewController
 {
-    NSString* jsString=@"window.qrcodeScanner.errorHandler(\"QRCodeScanner operation cancled.\")";
-    if (self.webView) {
-        [self.webView stringByEvaluatingJavaScriptFromString:jsString];
-    }
+    [self callbackObject:@"window.boncAppEngine.codeScanner" withHandler:@"cancleHandler" param:nil];
 }
 
--(void)viewController:(QRCodeViewController*)viewController didFailedScanWithError:(NSError*)error
+-(void)viewController:(BCCodeScannerController*)viewController didFailedScanWithError:(NSError*)error
 {
-    NSString* jsString=[NSString stringWithFormat:@"window.qrcodeScanner.errorHandler(\"%@\")",error.localizedDescription];
-    if (self.webView) {
-        [self.webView stringByEvaluatingJavaScriptFromString:jsString];
-    }
+    NSDictionary* param= @{@"description":error.description,@"code":[NSNumber numberWithInteger:error.code],@"domain":error.domain};
+    [self callbackObject:@"window.boncAppEngine.codeScanner" withHandler:@"errorHandler" param:param];
 }
 @end

@@ -19,9 +19,8 @@
 		634E94591D61729600FBB701 /* locationSpeed in Resources */ = {isa = PBXBuildFile; fileRef = 634E94581D61729600FBB701 /* locationSpeed */; };
 		636F8E421D6D5D02001B94BB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 636F8E411D6D5D02001B94BB /* Info.plist */; };
 		636F8E491D6D5F42001B94BB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 636F8E4B1D6D5F42001B94BB /* Localizable.strings */; };
-		639332181D66A355007CD2E6 /* focus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 639332111D66A355007CD2E6 /* focus@3x.png */; };
-		639332191D66A355007CD2E6 /* qrcode_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 639332121D66A355007CD2E6 /* qrcode_back@2x.png */; };
-		6393321B1D66A355007CD2E6 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 639332151D66A355007CD2E6 /* QRCodeViewController.m */; };
+		6393321B1D66A355007CD2E6 /* BCCodeScannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 639332151D66A355007CD2E6 /* BCCodeScannerController.m */; };
+		63F09DA21DDDA60E0048715D /* focus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63F09DA01DDDA60E0048715D /* focus@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,10 +62,9 @@
 		636F8E411D6D5D02001B94BB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		636F8E4A1D6D5F42001B94BB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		636F8E4C1D6D5F46001B94BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		639332111D66A355007CD2E6 /* focus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "focus@3x.png"; sourceTree = "<group>"; };
-		639332121D66A355007CD2E6 /* qrcode_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_back@2x.png"; sourceTree = "<group>"; };
-		639332141D66A355007CD2E6 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
-		639332151D66A355007CD2E6 /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
+		639332141D66A355007CD2E6 /* BCCodeScannerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCCodeScannerController.h; sourceTree = "<group>"; };
+		639332151D66A355007CD2E6 /* BCCodeScannerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCCodeScannerController.m; sourceTree = "<group>"; };
+		63F09DA01DDDA60E0048715D /* focus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "focus@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +135,7 @@
 		630CD7C71D60C481001EE1E7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				63F09DA01DDDA60E0048715D /* focus@3x.png */,
 				630CD7C81D60C481001EE1E7 /* main.m */,
 				636F8E4B1D6D5F42001B94BB /* Localizable.strings */,
 			);
@@ -164,10 +163,8 @@
 		6393320D1D66A355007CD2E6 /* QRCodeScanner */ = {
 			isa = PBXGroup;
 			children = (
-				639332111D66A355007CD2E6 /* focus@3x.png */,
-				639332121D66A355007CD2E6 /* qrcode_back@2x.png */,
-				639332141D66A355007CD2E6 /* QRCodeViewController.h */,
-				639332151D66A355007CD2E6 /* QRCodeViewController.m */,
+				639332141D66A355007CD2E6 /* BCCodeScannerController.h */,
+				639332151D66A355007CD2E6 /* BCCodeScannerController.m */,
 			);
 			path = QRCodeScanner;
 			sourceTree = "<group>";
@@ -278,11 +275,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				636F8E421D6D5D02001B94BB /* Info.plist in Resources */,
-				639332191D66A355007CD2E6 /* qrcode_back@2x.png in Resources */,
 				630CD7D71D60C481001EE1E7 /* LaunchScreen.storyboard in Resources */,
-				639332181D66A355007CD2E6 /* focus@3x.png in Resources */,
 				630CD7D41D60C481001EE1E7 /* Assets.xcassets in Resources */,
 				636F8E491D6D5F42001B94BB /* Localizable.strings in Resources */,
+				63F09DA21DDDA60E0048715D /* focus@3x.png in Resources */,
 				630CD7D21D60C481001EE1E7 /* Main.storyboard in Resources */,
 				634E94591D61729600FBB701 /* locationSpeed in Resources */,
 			);
@@ -310,7 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				630CD7FC1D60C481001EE1E7 /* BCWebViewURLInterceptor.m in Sources */,
-				6393321B1D66A355007CD2E6 /* QRCodeViewController.m in Sources */,
+				6393321B1D66A355007CD2E6 /* BCCodeScannerController.m in Sources */,
 				630CD7CF1D60C481001EE1E7 /* ViewController.m in Sources */,
 				630CD7CC1D60C481001EE1E7 /* AppDelegate.m in Sources */,
 				630CD7C91D60C481001EE1E7 /* main.m in Sources */,

@@ -40,8 +40,10 @@
     self=[super init];
     if (self) {
         // prepare the  video session
-        self.title=NSLocalizedString(@"QRCode Scanner", nil);
+        self.title=NSLocalizedString(@"CodeScanner", nil);
         [self setupSession];
+        
+        
     }
     return self;
 }
@@ -57,16 +59,15 @@
     [self setupScanView];
     //start scanning
     [self startScan];
-    
 }
 
 - (void)addBtnControls{
     //返回按钮
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.albumButton setTitle:NSLocalizedString(@"< Back", nil) forState:UIControlStateNormal];
-    [self.albumButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.albumButton.titleLabel.font=[UIFont systemFontOfSize:16];
-    self.albumButton.titleLabel.adjustsFontSizeToFitWidth=YES;
+    [self.backButton setTitle:NSLocalizedString(@"Back", nil) forState:UIControlStateNormal];
+    [self.backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.backButton.titleLabel.font=[UIFont systemFontOfSize:16];
+    self.backButton.titleLabel.adjustsFontSizeToFitWidth=YES;
     [self.backButton addTarget:self action:@selector(clickBack) forControlEvents:UIControlEventTouchUpInside];
     
     //相册按钮
@@ -110,7 +111,7 @@
         
         //返回按钮自动布局
         NSDictionary* viewDic=@{@"btn":self.backButton};
-        NSArray* horizontalConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-leading-[btn(>=32)]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:@{@"leading":@10} views:viewDic];
+        NSArray* horizontalConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-leading-[btn(>=48)]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:@{@"leading":@10} views:viewDic];
         
         NSArray* verticalConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-top-[btn(>=32)]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:@{@"top":@20} views:viewDic];
         
@@ -162,7 +163,7 @@
     if ([self.session canAddInput:input]) {
         [self.session addInput:input];
     }else{
-        error=[[NSError alloc]initWithDomain:@"cn.com.bonc.QRScanner" code:1 userInfo:@{NSLocalizedDescriptionKey:@"AVCaptureSession add Input failed."}];
+        error=[[NSError alloc]initWithDomain:@"cn.com.bonc.CodeScanner" code:1 userInfo:@{NSLocalizedDescriptionKey:@"AVCaptureSession add Input failed."}];
         if (error&&self.delegate&&[self.delegate respondsToSelector:@selector(viewController:didFailedScanWithError:)]) {
             [self.delegate viewController:self didFailedScanWithError:error];
         }
@@ -171,7 +172,7 @@
     if ([self.session canAddOutput:output]) {
         [self.session addOutput:output];
     }else{
-        error=[[NSError alloc]initWithDomain:@"cn.com.bonc.QRScanner" code:1 userInfo:@{NSLocalizedDescriptionKey:@"AVCaptureSession add Output failed."}];
+        error=[[NSError alloc]initWithDomain:@"cn.com.bonc.CodeScanner" code:1 userInfo:@{NSLocalizedDescriptionKey:@"AVCaptureSession add Output failed."}];
         if (error&&self.delegate&&[self.delegate respondsToSelector:@selector(viewController:didFailedScanWithError:)]) {
             [self.delegate viewController:self didFailedScanWithError:error];
         }
@@ -217,7 +218,7 @@
     UILabel *promoteLabel=[[UILabel alloc]init];
     promoteLabel.translatesAutoresizingMaskIntoConstraints=NO;
     promoteLabel.textColor=[UIColor greenColor];
-    promoteLabel.text=NSLocalizedString(@"Focus the QRCode image and wait for scanning to be finished.", nil);
+    promoteLabel.text=NSLocalizedString(@"Align QR code/barcode within frame to scan", nil);
     promoteLabel.numberOfLines=2;
     promoteLabel.textAlignment=NSTextAlignmentCenter;
     promoteLabel.font=[UIFont systemFontOfSize:16];
@@ -252,18 +253,16 @@
     
     [self.focusView addConstraints:@[widthConstraint,heightConstraint,centerXConstraint,self.scannerTopConstraint]];
     
-    [self startScanAnimation];
+    [self initScanAnimation];
 }
 
 #pragma mark - Scanner Animation Method
--(void)startScanAnimation
+-(void)initScanAnimation
 {
-    if (!self.timer) {
-        self.timer=[[NSTimer alloc]initWithFireDate:[NSDate distantFuture] interval:1.1 target:self selector:@selector(animateScanner) userInfo:nil repeats:YES];
+        self.timer=[[NSTimer alloc]initWithFireDate:[NSDate distantFuture] interval:1.3 target:self selector:@selector(animateScanner) userInfo:nil repeats:YES];
         NSThread* thread=[[NSThread alloc]initWithTarget:self selector:@selector(setupTimer) object:nil];
-        thread.name=@"cn.com.bonc.QRScannerThread";
+        thread.name=@"cn.com.bonc.CodeScannerThread";
         [thread start];
-    }
 }
 
 -(void)setupTimer{
@@ -286,8 +285,8 @@
         }];
     });
 }
-#pragma mark - Orientation Method
 
+#pragma mark - Orientation Method
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [self animateRotateLayerToInterfaceOrientation:toInterfaceOrientation duration:duration];
@@ -351,7 +350,7 @@
         vc.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
     }
     else{
-        NSError *error=[[NSError alloc]initWithDomain:@"cn.com.bonc.QRScanner" code:1 userInfo:@{NSLocalizedDescriptionKey:@"PhotoLibrary Source is not available."}];
+        NSError *error=[[NSError alloc]initWithDomain:@"cn.com.bonc.CodeScanner" code:1 userInfo:@{NSLocalizedDescriptionKey:@"PhotoLibrary Source is not available."}];
         if (error&&self.delegate&&[self.delegate respondsToSelector:@selector(viewController:didFailedScanWithError:)]) {
             [self.delegate viewController:self didFailedScanWithError:error];
         }
@@ -412,7 +411,7 @@
         }
     }
     else{
-        NSError *error=[[NSError alloc]initWithDomain:@"cn.com.bonc.QRScanner" code:1 userInfo:@{NSLocalizedDescriptionKey:@"Could not read QRCode from image."}];
+        NSError *error=[[NSError alloc]initWithDomain:@"cn.com.bonc.CodeScanner" code:1 userInfo:@{NSLocalizedDescriptionKey:@"Could not read QRCode from image."}];
         if (error&&self.delegate&&[self.delegate respondsToSelector:@selector(viewController:didFailedScanWithError:)]) {
             [self.delegate viewController:self didFailedScanWithError:error];
         }
@@ -435,7 +434,7 @@
 {
     //低于ios8不支持探测二维码，返回空;
     if ([[[UIDevice currentDevice] systemVersion] floatValue]<8.0) {
-        NSError *error=[[NSError alloc]initWithDomain:@"cn.com.bonc.QRScanner" code:1 userInfo:@{NSLocalizedDescriptionKey:@"Could not read QRCode from image."}];
+        NSError *error=[[NSError alloc]initWithDomain:@"cn.com.bonc.CodeScanner" code:1 userInfo:@{NSLocalizedDescriptionKey:@"Could not read QRCode from image."}];
         if (error&&self.delegate&&[self.delegate respondsToSelector:@selector(viewController:didFailedScanWithError:)]) {
             [self.delegate viewController:self didFailedScanWithError:error];
         }

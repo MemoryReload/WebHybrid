@@ -7,10 +7,12 @@
 */
 
 //
-"QRCode Scanner" = "QRCode Scanner";
+"CodeScanner" = "CodeScanner";
 //
 "Album" = "Album";
 //
 "WebTest" = "WebTest";
 //
-"Focus the QRCode image and wait for scanning to be finished." = "Focus the QRCode image and wait for scanning to be finished.";
+"Align QR code/barcode within frame to scan" = "Align QR code/barcode within frame to scan";
+//
+"Back" = "Back";

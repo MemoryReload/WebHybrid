@@ -8,8 +8,6 @@
 
 #import "ViewController.h"
 
-#import "QRCodeViewController.h"
-
 @interface ViewController ()<UIWebViewDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *privateWebView;
 @property (nonatomic,strong) BCWebViewURLInterceptor* interceptor;
@@ -19,17 +17,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title=NSLocalizedString(@"WebTest", nil);
-    // Do any additional setup after loading the view, typically from a nib.
+// Do any additional setup after loading the view, typically from a nib.
     NSString* path=[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"locationSpeed"];
     path=[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL* url=[NSURL URLWithString:path];
-//    NSURL* url=[NSURL URLWithString:@"http://172.16.73.149:8080/gansu/index.html"];
+//    NSURL* url=[NSURL URLWithString:@"http://172.16.73.47:8080/gs/index.html"];
     NSURLRequest* request=[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
     [self.privateWebView loadRequest:request];
     
-    self.interceptor=[[BCWebViewURLInterceptor alloc]initWithInterceptedURLScheme:@"mobile-service"];
+    self.interceptor=[[BCWebViewURLInterceptor alloc]init];
     self.interceptor.webView=self.privateWebView;
     self.interceptor.viewController=self;
 }
@@ -55,7 +51,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    self.title=[self.privateWebView stringByEvaluatingJavaScriptFromString:@"document.title"];
     NSLog(@"finish web loading......");
-
 }
 @end
