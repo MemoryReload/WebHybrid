@@ -1,5 +1,5 @@
 //
-//  QRCodeViewController.m
+//  BCCodeScannerController.m
 //
 //  BCURLInterceptor.h
 //  LocationTest
@@ -10,19 +10,17 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import <MobileCoreServices/UTCoreTypes.h>
-#import "QRCodeViewController.h"
+#import "BCCodeScannerController.h"
 
-@interface QRCodeViewController () <AVCaptureMetadataOutputObjectsDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
-
-#define FOCUS_IMG_NAME       @"focus.png"
-#define SCANNER_IMG_NAME     @""
+@interface BCCodeScannerController () <AVCaptureMetadataOutputObjectsDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 #define SCANNER_WIDTH    10
 #define SCANN_MARGIN     5
 
-@property (strong, nonatomic) UIButton *backButton;
-@property (strong, nonatomic) UIButton *albumButton;
-@property (strong, nonatomic) UILabel  *titleView;
+@property (strong, nonatomic,readwrite) UIButton *backButton;
+@property (strong, nonatomic,readwrite) UIButton *albumButton;
+@property (strong, nonatomic,readwrite) UILabel  *titleView;
+
 @property (strong, nonatomic) AVCaptureSession *session;
 @property (strong, nonatomic) AVCaptureVideoPreviewLayer *preview;
 @property (strong, nonatomic) UIImageView *focusView;
@@ -30,7 +28,7 @@
 @property (strong, nonatomic) NSTimer  *timer;
 @end
 
-@implementation QRCodeViewController
+@implementation BCCodeScannerController
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -59,14 +57,19 @@
     [self setupScanView];
     //start scanning
     [self startScan];
+    
 }
 
 - (void)addBtnControls{
-    
+    //返回按钮
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.backButton setBackgroundImage:[UIImage imageNamed:@"qrcode_back"] forState:UIControlStateNormal];
+    [self.albumButton setTitle:NSLocalizedString(@"< Back", nil) forState:UIControlStateNormal];
+    [self.albumButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.albumButton.titleLabel.font=[UIFont systemFontOfSize:16];
+    self.albumButton.titleLabel.adjustsFontSizeToFitWidth=YES;
     [self.backButton addTarget:self action:@selector(clickBack) forControlEvents:UIControlEventTouchUpInside];
     
+    //相册按钮
     self.albumButton= [UIButton buttonWithType:UIButtonTypeCustom];
     [self.albumButton setTitle:NSLocalizedString(@"Album", nil) forState:UIControlStateNormal];
     [self.albumButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -82,10 +85,9 @@
     self.titleView.textAlignment=NSTextAlignmentCenter;
     self.titleView.text=self.title;
     
-    
     if (self.navigationController) {
         
-        self.backButton.frame = CGRectMake(0, 0, 32, 32);
+        self.backButton.frame = CGRectMake(0, 0, 48, 32);
         UIBarButtonItem* item=[[UIBarButtonItem alloc]initWithCustomView:self.backButton];
         self.navigationItem.leftBarButtonItems=@[item];
         
@@ -114,7 +116,7 @@
         
         [self.view addConstraints:horizontalConstraints];
         [self.view addConstraints:verticalConstraints];
-    
+        
         //相册按钮自动布局
         viewDic=@{@"album":self.albumButton};
         horizontalConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[album(>=48)]-trailing-|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:@{@"trailing":@10} views:viewDic];
@@ -129,7 +131,6 @@
         NSLayoutConstraint* topConstraint=[NSLayoutConstraint constraintWithItem:self.titleView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:20];
         NSLayoutConstraint* height=[NSLayoutConstraint constraintWithItem:self.titleView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:32];
         [self.view addConstraints:@[centerX,width,topConstraint,height]];
-        
     }
 }
 
@@ -144,13 +145,15 @@
     }
     // Output
     AVCaptureMetadataOutput *output = [[AVCaptureMetadataOutput alloc] init];
+    // Create a new serial dispatch queue.
     [output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
     
     //setup Output scan Region
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     UIImage* focus=[UIImage imageNamed:FOCUS_IMG_NAME];
-    output.rectOfInterest = CGRectMake((screenWidth - focus.size.width) / 2 / screenWidth,(screenHeight - focus.size.height) / 2 / screenHeight,focus.size.width / screenWidth,focus.size.height / screenHeight);
+    CGRect rect=CGRectMake((screenHeight - focus.size.height) / 2 /screenHeight,(screenWidth - focus.size.width) / 2 /screenWidth,focus.size.height/screenHeight,focus.size.width/screenWidth);
+    output.rectOfInterest = rect;
     
     // Session
     self.session = [[AVCaptureSession alloc] init];
@@ -173,7 +176,7 @@
             [self.delegate viewController:self didFailedScanWithError:error];
         }
     }
-    output.metadataObjectTypes = @[ AVMetadataObjectTypeQRCode ];
+    output.metadataObjectTypes = [NSArray arrayWithObjects:AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeEAN8Code, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeQRCode, nil];
 }
 
 - (void)setupPreviewLayer
@@ -231,8 +234,12 @@
     //扫描器
     UIImageView* scannerView=[[UIImageView alloc]init];
     scannerView.translatesAutoresizingMaskIntoConstraints=NO;
-    scannerView.image=[UIImage imageNamed:SCANNER_IMG_NAME];
+    UIImage* img=[UIImage imageNamed:SCANNER_IMG_NAME];
+    if (img) {
+        scannerView.image=img;
+    }else{
     scannerView.backgroundColor=[UIColor greenColor];
+    }
     [self.focusView addSubview:scannerView];
     
     NSLayoutConstraint* widthConstraint=[NSLayoutConstraint constraintWithItem:self.focusView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:scannerView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:SCANNER_WIDTH];
@@ -252,7 +259,7 @@
 -(void)startScanAnimation
 {
     if (!self.timer) {
-        self.timer=[[NSTimer alloc]initWithFireDate:[NSDate distantFuture] interval:2.2 target:self selector:@selector(animateScanner) userInfo:nil repeats:YES];
+        self.timer=[[NSTimer alloc]initWithFireDate:[NSDate distantFuture] interval:1.1 target:self selector:@selector(animateScanner) userInfo:nil repeats:YES];
         NSThread* thread=[[NSThread alloc]initWithTarget:self selector:@selector(setupTimer) object:nil];
         thread.name=@"cn.com.bonc.QRScannerThread";
         [thread start];
@@ -270,7 +277,7 @@
     CGFloat maxDistance=self.focusView.bounds.size.height-SCANNER_WIDTH-SCANN_MARGIN;
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:2.0 animations:^{
+        [UIView animateWithDuration:1.0 animations:^{
             [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
             self.scannerTopConstraint.constant=maxDistance;
             [self.focusView layoutIfNeeded];
